@@ -2,16 +2,15 @@ import { server } from '../config'
 import Image from 'next/image'
 import styles from '../styles/Layout.module.css'
 import ArticleList from '../components/ArticleList'
-import SearchApi from '../components/SearchAPI'
-import SearchPlantCard from '../components/SearchPlantCard'
+
+
 
 
 export default function Home({ articles }) {
   return (
     <>
       <main className={styles.main}>    
-        <SearchApi />           
-        <SearchPlantCard plants={plants} />
+
         <ArticleList articles={articles} />
       </main>
     </>
