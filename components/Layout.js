@@ -1,18 +1,16 @@
 import styles from '../styles/Layout.module.css'
-import { FC, ReactNode } from 'react'
 import Nav from './Nav'
+import Header from './Header'
+import Meta from './Meta'
 
-interface LayoutProps {
-  children: ReactNode
-}
-
-const Layout: FC<LayoutProps> = ({children}) => {
+const Layout = ({children}) => {
   return (
     <>
+    <Meta />
     <Nav />
     <div className={styles.container}>
       <main className={styles.main}>
-      
+        <Header />      
         {children}
       </main>
     </div>
@@ -20,6 +18,6 @@ const Layout: FC<LayoutProps> = ({children}) => {
   )
 };
 
-//to get this wrapping around everything in the _app.tsx file, we will be passing in the component in _app as children
+//to get this wrapping around everything in the _app.jsx file, we will be passing in the component in _app as children
 
 export default Layout;

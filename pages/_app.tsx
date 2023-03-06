@@ -1,4 +1,4 @@
-import Layout from '../components/Layout'
+import Layout from '../components/Layout.js'
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 //we can wrap a layout around all of this

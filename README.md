@@ -1,2 +1,3 @@
-# MyFoodForest
-This app is for tracking the perennials in a food forest, including information on pruning, harvesting and other care.
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+## Food Forest
