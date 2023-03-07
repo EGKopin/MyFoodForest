@@ -1,10 +1,12 @@
-import { useState } from 'react'
-import SearchApi from '../components/SearchAPI'
-import SearchPlantList from '../components/SearchPlantList'
+import React, { useState } from 'react'
+import SearchApi from '../components/AddPlant/SearchAPI'
+import SearchPlantList from '../components/AddPlant/SearchPlantList'
 import styles from '../styles/Layout.module.css'
 import { server } from '../config'
+import AddPlantDetails from '../components/AddPlant/AddPlantDetails'
 
-export default function addPerennial() {
+
+export default function AddPerennial() {
   const [display, setDisplay] = useState([]);
 
   const onSubmit = async (input) => {
@@ -18,8 +20,11 @@ export default function addPerennial() {
       <main className={styles.main}>    
         <SearchApi 
           onSubmit={onSubmit}
-        />           
-        <SearchPlantList plants={display} />
+        />
+        <div>        
+          <SearchPlantList plants={display} />
+          <AddPlantDetails />
+        </div>
       </main>
     </>
   )

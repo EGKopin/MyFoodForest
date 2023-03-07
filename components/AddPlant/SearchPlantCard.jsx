@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { server } from '../config'
+import { server } from '../../config'
 
 
 const SearchPlantCard = ({ id, commonName, sciName, image, moreInfo }) => {
@@ -15,14 +15,17 @@ const SearchPlantCard = ({ id, commonName, sciName, image, moreInfo }) => {
     <li>
       <h2>{commonName}</h2>
       <h3>{sciName}</h3>
-      <Image 
-        src={image}
-        alt={commonName}
-        width={100}
-        height={100}
-      />
-      <button onClick={()=>getDetails(id)}>Details</button>
-      <button>Add to Collection</button>
+      <div style={{height:'auto'}}>
+        <div style={{width:'128px', position:'relative', objectFit:'contain', objectPosition:'left 50%'}}>
+          <Image 
+            src={image}
+            alt={commonName ? commonName : sciName}
+            fill
+          />
+        </div>
+        <button onClick={()=>getDetails(id)}>Details</button>
+        <button>Add to Collection</button>
+      </div>
     </li>
     
   )

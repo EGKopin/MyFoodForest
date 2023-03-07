@@ -18,6 +18,7 @@ export default function Home() {
       </Head> */}
       <main className={styles.main}>
            <h1>Perennials</h1>
+           {/* this will have a container to show all the user's perennial cards */}
       </main>
     </>
   )
