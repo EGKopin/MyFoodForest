@@ -1,0 +1,49 @@
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  first_name VARCHAR(50),
+  last_name VARCHAR(50),
+  email VARCHAR(100),
+  userName VARCHAR(100),
+  password VARCHAR(100),
+  zone INTEGER,
+  zip_code VARCHAR(15)
+);
+
+CREATE TABLE plants (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER REFERENCES users(id),
+  common_name VARCHAR(100),
+  type VARCHAR(100),
+  scientific_name VARCHAR(100),
+  planted_date DATE,
+  self_pollinating BOOLEAN,
+  bud_break_date DATE,
+  first_bloom_date DATE,
+  last_bloom_date DATE,
+  first_day_fruiting DATE,
+  last_day_fruiting DATE,
+  pruning_details TEXT,
+  fruiting_wood VARCHAR(1000),
+  image VARCHAR(255),
+  notes TEXT,
+  isAnnual BOOLEAN,
+  
+  days_to_germ INTEGER,
+  seed_depth INTEGER,
+  seed_start_date DATE,
+  soil_block BOOLEAN,
+  weeks_to_transplant INTEGER,
+  seed_start_date_outside DATE,
+  favorite BOOLEAN
+);
+
+CREATE TABLE observations (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER REFERENCES users(id),
+  plant_id INTEGER REFERENCES plants(id),
+  observation_date DATE,
+  image VARCHAR(255),
+  notes TEXT
+);
+
+//use trefle API

@@ -3,11 +3,10 @@
   //Api is limit of 120 requests per minute
 
 export default async function handler (req, res) {
-  console.log(req)
   const { id } = req.query;
 
   try {
-    const response = await fetch(`https://api.floracodex.com/v1/plants/${id}?key=${process.env.FLORA_KEY}`)
+    const response = await fetch(`https://api.floracodex.com/v1/species/${id}?key=${process.env.FLORA_KEY}`)
 
     const json = await response.json();
     res.status(200).json(json)
