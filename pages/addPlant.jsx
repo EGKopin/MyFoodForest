@@ -6,6 +6,7 @@ import { server } from '../config'
 import AddPerennial from '../components/AddPlant/AddPerennial'
 import AddAnnual from '../components/AddPlant/AddAnnual'
 
+//Main page for adding all plants
 
 export default function AddPlant() {
   const [display, setDisplay] = useState([]);
@@ -35,7 +36,7 @@ export default function AddPlant() {
         <div>
           <h3>The collection grows</h3>
           <br></br>
-          <form>
+          <form className='addType'>
             <label>Adding a   
               <select name='plantType' onChange={handleChange} >
                 <option value=""></option>

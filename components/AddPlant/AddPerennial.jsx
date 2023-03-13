@@ -4,7 +4,7 @@ import { server } from '../../config'
 
 export default function AddPerennial () {
 
-  const [ plantDetails, setPlantDetails ] = useState({
+  const defaultPerennial = {
     common_name: '',
     type: '',
     scientific_name: '',
@@ -19,7 +19,9 @@ export default function AddPerennial () {
     fruiting_wood: '',
     notes: '',
     isannual: false
-  })
+  }
+
+  const [ plantDetails, setPlantDetails ] = useState(defaultPerennial)
 
   const { common_name, type, scientific_name, planted_date, bud_break_date, first_bloom_date, last_bloom_date, first_day_fruiting, last_day_fruiting, pruning_details, fruiting_wood, notes} = plantDetails;
 
@@ -38,6 +40,7 @@ export default function AddPerennial () {
   }
 
   const addPlant = () => {
+    // e.preventDefault()
     console.log('add plant')
     fetch(`${server}/api/AddToPerennials`, {
       method:'POST',
@@ -48,8 +51,9 @@ export default function AddPerennial () {
       },
     })
     .then(res => res.json())
-    .then(addedplant => { //doesn't seem to be running 
-      console.log('addedplant', addedplant)
+    .then(addedplant => {
+      setPlantDetails(defaultPerennial)
+      console.log('Perennial Added', addedplant)
       })
     .catch ((err) => console.log('error in AddToPlants', err))
   }
@@ -57,7 +61,7 @@ export default function AddPerennial () {
   return (
     <div>
       <br></br>
-      <form className="addPlant">
+      <div className="addPlant">
         <label>Common name:
           <input type="text" id={common_name} name='common_name' value={common_name} onChange={updateForm} />
         </label><br></br>
@@ -68,7 +72,7 @@ export default function AddPerennial () {
           <input type="text" id={scientific_name} name='scientific_name' value={scientific_name} onChange={updateForm} />
         </label><br></br>
         <label>Planted Date:
-          <input type="date" name='planted_date' value={planted_date} onChange={updateForm} />
+          <input type="date" name='planted_date'  onChange={updateForm} />
         </label><br></br>
         <label>Self-Pollinating?
           <input type="checkbox" name='self_pollinating' onChange={updateForm} />
@@ -79,29 +83,32 @@ export default function AddPerennial () {
         <br></br>
         <h4>Additional Details</h4>
         <label>Bud Break:
-          <input type="date" name="bud_break_date" value={bud_break_date} onChange={updateForm} />
+          <input type="date" name="bud_break_date"  onChange={updateForm} />
         </label><br></br>
         <label>First Bloom:
-          <input type="date" name="first_bloom_date" value={first_bloom_date} onChange={updateForm} />
+          <input type="date" name="first_bloom_date" onChange={updateForm} />
         </label><br></br>
         <label>Last Bloom:
-          <input type="date" name='last_bloom_date' value={last_bloom_date} onChange={updateForm} />
+          <input type="date" name='last_bloom_date'  onChange={updateForm} />
         </label><br></br>
         <label>First Fruit:
-          <input type="date" name='first_day_fruiting' value={first_day_fruiting} onChange={updateForm} />
+          <input type="date" name='first_day_fruiting' onChange={updateForm} />
         </label><br></br>
         <label>Fruit End:
-          <input type="date" name='last_day_fruiting' value={last_day_fruiting} onChange={updateForm} />
+          <input type="date" name='last_day_fruiting' onChange={updateForm} />
         </label><br></br>
-        <label>Pruning Notes:
-          <input type="text" name='pruning_details'value={pruning_details} onChange={updateForm} />
-        </label><br></br>
-        <label>Other Notes:
-          <input type="text" name='notes' value={notes} onChange={updateForm} />
-        </label><br></br>      
-
-        <button className='plantButton' onClick={addPlant} >Submit</button>
-      </form>
+        <div className="notes">
+          <label>Pruning Notes:
+            <input type="text" name='pruning_details'value={pruning_details} onChange={updateForm} />
+          </label><br></br>
+        </div>
+        <div className="notes">
+          <label>Other Notes:
+            <input type="text" name='notes' value={notes} onChange={updateForm} />
+          </label><br></br>      
+        </div>
+        <button className='addButton' onClick={addPlant} >Submit</button>
+      </div>
     </div>
   )
 }

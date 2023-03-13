@@ -28,8 +28,8 @@ CREATE TABLE plants (
   notes TEXT,
   isAnnual BOOLEAN,
   
-  days_to_germ INTEGER,
-  seed_depth INTEGER,
+  days_to_germ VARCHAR(20),
+  seed_depth VARCHAR(20),
   seed_start_date DATE,
   soil_block BOOLEAN,
   weeks_to_transplant INTEGER,

@@ -1,7 +1,6 @@
 const db = require('./dbModel')
 
 export default async function handler (req, res) {
-//  if(!req.body.isannual){
   const { common_name, type, scientific_name, planted_date, self_pollinating, bud_break_date, first_bloom_date, last_bloom_date, first_day_fruiting, last_day_fruiting, pruning_details, fruiting_wood, notes, isannual } = req.body; 
 
   try {
@@ -19,9 +18,8 @@ export default async function handler (req, res) {
   catch (err) {
     res.status(400).json({
       message: {
-        err: 'Error in perennialController.addPlants',
+        err: `Error in AddToPerennials handler,  ${err}`,
       },
     });
-  // };
-}
+  }
 }
