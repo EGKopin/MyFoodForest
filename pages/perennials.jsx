@@ -2,7 +2,7 @@ import Head from 'next/head' //Head is used for custom meta tags and titles; gre
 import Image from 'next/image'
 import styles from '../styles/Layout.module.css'
 import Meta from '../components/Meta' // to have different Meta data for the page...
-import PerennialContainer from '../components/container/PerennialContainer'
+import PerennialContainer from '../containers/PerennialContainer'
 
 export default function Home() {
   return (
@@ -16,7 +16,7 @@ export default function Home() {
         <meta name="keywords" content="perennials, food forest" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      
+
       <main className={styles.main}>
            <h1>Perennials</h1>
            <PerennialContainer />
