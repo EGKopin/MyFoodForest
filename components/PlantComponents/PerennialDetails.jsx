@@ -1,14 +1,19 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../Context";
 import moment from "moment"
+import AddObservation from './ObservationForm'
+
 
 export default function PerennialDetails (props) {
   const { currentID } = props
   const { allPlants } = useContext(Context);
+  const [ obsModal, setObsModal ] = useState(false)
+
   let currentDetails = {};
 
   const addObs = () => {
-    console.log('Current plant\'s id', currentID)
+    setObsModal(true)
+    console.log('Current plant\'s id', currentID, 'and obsmodal is ', obsModal)
   }
 
   const UpdateDetails = () => {
@@ -53,8 +58,12 @@ export default function PerennialDetails (props) {
   }
 
   return (
+    <>
     <div className="plantDetails">
       <UpdateDetails />
+      <br></br>
+    {obsModal ? <AddObservation /> : null}
     </div>
+    </>
   )
 }

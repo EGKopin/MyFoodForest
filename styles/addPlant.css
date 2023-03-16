@@ -1,33 +1,44 @@
 .addPlant {
-  padding: 20px;
+  padding: 10px;
   margin: 5px;
   border: 1px dotted red ;
   border-radius: 10px;
   /* height: 500px; */
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  width: 500px;
+  width: 400px;
+}
+
+ .obs {
+  padding: 10px 0px;
+  width: auto;
 }
 
 .addPlant label {
-  padding: 4px;
-  margin: 5px;
+  display: block;
+  padding: 0px;
+  /* margin: 5px; */
+  font: .9rem sans-serif;
+  /* position: relative; */
+  /* vertical-align: bottom; */
 }
 
 .addPlant input {
   padding-left: 4px;
+  /* margin-top: 1px; */
   margin-left: 10px;
   float: right;
   width: 200px;
+  
 }
 
 .notes {
-  border: 1px dotted red ;
+  /* border: 1px dotted red ; */
   height: 100px;
 }
 
-.notes label {
+/* .notes label {
   line-height: 60px;
-}
+} */
 
 .notes input {
   height: 90px;

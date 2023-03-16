@@ -11,7 +11,9 @@ const ContextProvider = ({children}) => {
     userID,
     setUserID,
     allPlants,
-    setAllPlants
+    setAllPlants,
+    allObs,
+    setAllObs
   }
 
   return (
