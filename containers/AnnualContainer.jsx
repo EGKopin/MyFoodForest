@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useContext } from "react"
+import AnnualCard from "../components/PlantComponents/AnnualCard"
+import { Context } from "../components/Context"
 
-const AnnualContainer = () => {
-  return(
-    <>
-    </>
+const AnnualContainer = ({setID}) => {
+  const { allPlants } = useContext(Context);
+  
+  return (
+    <section className="plantContainer">
+      {allPlants.map(plant => {
+        if (plant.isannual)
+        return <AnnualCard props={plant} key={plant.id} setID={setID}></AnnualCard>
+      })}
+    </section>
   )
 }
 

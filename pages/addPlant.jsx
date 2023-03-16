@@ -17,11 +17,12 @@ export default function AddPlant() {
     if (addType === 'perennial') return <AddPerennial />
   }
 
-  const onSubmit = async (input) => {
-    const res = await fetch(`${server}/api/GetFlora/?string=${input}`);
-    const results = await res.json()
-    setDisplay(results.data)
-  }
+  /* Works with API, no longer using atm */
+  // const onSubmit = async (input) => {
+  //   const res = await fetch(`${server}/api/GetFlora/?string=${input}`);
+  //   const results = await res.json()
+  //   setDisplay(results.data)
+  // }
 
   const handleChange = (e) => {
     setAddType(e.target.value)

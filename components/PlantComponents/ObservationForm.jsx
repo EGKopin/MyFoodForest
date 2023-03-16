@@ -3,35 +3,23 @@ import { Context } from "../Context";
 import { server } from '../../config';
 
 export default function AddAnnual () {
-  const { setAllPlants } = useContext(Context);
+  const { userID } = useContext(Context)
+  plant_id, observation_date, notes
 
-  const defaultAnnual = {
-    common_name: '',
-    type: '',
-    scientific_name: '',
-    days_to_germ: '',
-    seed_depth: '',
-    seed_start_date: null,
-    soil_block: false,
-    weeks_to_transplant: null,
-    seed_start_date_outside: null,
-    favorite: false,
+  const defaultObs = {
+    user_id: userID,
+    plant_id: '',
+    observation_date: '',
+    image: '',
     notes: '',
-    isannual: true
   }
-  const [ plantDetails, setPlantDetails ] = useState(defaultAnnual)
+  const [ obsDetails, setObsDetails ] = useState(defaultObs)
 
-  const { common_name, type, scientific_name, days_to_germ, seed_depth, weeks_to_transplant, notes} = plantDetails;
+  const { plant_id, observation_date, image, notes} = obsDetails;
 
   const updateForm = (e) => {
-    if (e.target.name === 'soil_block' || e.target.name === 'favorite' ){
-      setPlantDetails({
-        ...plantDetails,
-        [e.target.name]: e.target.checked
-      });
-    } else {
-      setPlantDetails({
-        ...plantDetails,
+      setObsDetails({
+        ...obsDetails,
         [e.target.name]: e.target.value
       });
     }
@@ -39,18 +27,18 @@ export default function AddAnnual () {
 
   const addPlant = (e) => {
     // e.preventDefault()
-    console.log('add plant', plantDetails)
-    fetch(`${server}/api/AddToAnnuals`, {
+    console.log('add observation', obsDetails)
+    fetch(`${server}/api/AddObservation`, {
       method:'POST',
       mode: 'cors',
-      body: JSON.stringify(plantDetails),
+      body: JSON.stringify(obsDetails),
       headers: {
         'Content-type': 'application/json; charset=UTF-8',
       },
     })
     .then(res => res.json())
-    .then(addedplant => { 
-      setPlantDetails(defaultAnnual);
+    .then(addedobs => { 
+      setObsDetails(defaultAnnual);
       console.log('Annual added:', addedplant);
       setAllPlants(state=>state.concat(addedplant));
       })
@@ -104,3 +92,5 @@ export default function AddAnnual () {
     </div>
   )
 }
+
+

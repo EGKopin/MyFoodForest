@@ -12,11 +12,14 @@ const Nav = () => {
           <Link href="/perennials">Perennials</Link>
         </li>
         <li>
-          <Link href="/addPlant">Add Plants</Link>
+          <Link href="/annuals">Annuals</Link>
         </li>
         <li>
-          <Link href="/addObservation">Add Observation</Link>
+          <Link href="/addPlant">Add Plants</Link>
         </li>
+        {/* <li>
+          <Link href="/addObservation">Add Observation</Link>
+        </li> */}
       </ul>
     </nav>
   )

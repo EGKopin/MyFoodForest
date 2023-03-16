@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { Context } from "../Context";
 import { server } from '../../config'
 
 
+
 export default function AddPerennial () {
+  const { setAllPlants } = useContext(Context);
 
   const defaultPerennial = {
     common_name: '',
@@ -52,8 +55,10 @@ export default function AddPerennial () {
     })
     .then(res => res.json())
     .then(addedplant => {
-      setPlantDetails(defaultPerennial)
-      console.log('Perennial Added', addedplant)
+      setPlantDetails(defaultPerennial);
+      console.log('Perennial Added', addedplant);
+      setAllPlants(state=>state.concat(addedplant));
+
       })
     .catch ((err) => console.log('error in AddToPlants', err))
   }

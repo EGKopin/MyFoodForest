@@ -1,7 +1,7 @@
 const db = require('./dbModel')
 
 export default async function handler (req, res) {
-  const { plant_id, observation_date, notes } = req.body; 
+  const { userID, plant_id, observation_date, notes } = req.body; 
 
   try {
     const queryString = `
@@ -9,7 +9,7 @@ export default async function handler (req, res) {
     VALUES ($1, $2, $3, $4)
     RETURNING *
     `
-    const params = [4, plant_id, observation_date, notes];
+    const params = [userID, plant_id, observation_date, notes];
 
     const result = await db.query(queryString, params);
     console.log(result.rows)

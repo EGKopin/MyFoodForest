@@ -2,12 +2,12 @@ import Head from 'next/head' //Head is used for custom meta tags and titles; gre
 import Image from 'next/image'
 import styles from '../styles/Layout.module.css'
 import Meta from '../components/Meta' // to have different Meta data for the page...
-import PerennialContainer from '../containers/PerennialContainer'
-import PerennialDetails from '../components/PlantComponents/PerennialDetails'
+import AnnualContainer from '../containers/AnnualContainer'
+import AnnualDetails from '../components/PlantComponents/AnnualDetails'
 import { useState } from 'react'
 
 
-export default function PHome() {
+export default function AHome() {
   const [currentID, setCurrentID] = useState(null)
 
   return (
@@ -23,12 +23,12 @@ export default function PHome() {
       </Head>
 
       <main className={styles.main}>
-           <h1>Perennials</h1>
+           <h1>Annuals</h1>
            <div className='mainPlantPage'>
-            <PerennialContainer 
+            <AnnualContainer 
               setID={setCurrentID}
               />
-            <PerennialDetails 
+            <AnnualDetails 
               currentID={currentID}
             />
            </div>

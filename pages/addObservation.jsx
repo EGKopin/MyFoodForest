@@ -23,14 +23,11 @@ export default function AddObservation() {
   return (
     <>
       <main className={styles.main}>    
-        {/* <SearchApi  */}
-          {/* onSubmit={onSubmit} */}
-        {/* /> */}
         <div>
-          <h3>The collection grows</h3>
+          <h3>I spy with my little eye...</h3>
           <br></br>
           <form className='addType'>
-            <label>Adding a   
+            <label>Searching f
               <select name='plantType' onChange={handleChange} >
                 <option value=""></option>
                 <option value="annual">annual</option>
@@ -38,7 +35,6 @@ export default function AddObservation() {
               </select>
             </label>
           </form>
-          {/* <SearchPlantList plants={display} /> */}
         </div>
       </main>
     </>
