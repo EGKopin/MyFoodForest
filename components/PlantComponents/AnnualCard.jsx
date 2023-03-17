@@ -15,19 +15,13 @@ export default function AnnualCard (props) {
     return 'n/a'
   }
 
-  const addObs = () => {
-    console.log('plant id', id)
-  }
-
-
   return (
     <div className="plantCard">
       <h1>{common_name}</h1>
        <h4>{type}, <span className="italics"> {scientific_name}</span></h4>
-       Would like image here
+       Would like image and Favorite star here
       <div className="buttons">
         <button onClick={()=>setID(id)}>Details</button>
-        <button onClick={addObs}>Observation</button>
       </div>
     </div>
   )

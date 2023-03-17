@@ -1,10 +1,11 @@
 import React from "react";
 import moment from "moment"
+import AddObservation from './ObservationForm'
 
 export default function PerennialCard (props) {
-  const { id, common_name, type, scientific_name, planted_date, self_pollinating, bud_break_date, first_bloom_date, last_bloom_date, first_day_fruiting, last_day_fruiting, pruning_details, fruiting_wood, notes } = props.props;
+  const { id, common_name, type, scientific_name } = props.props;
 
-  const { setID } = props;
+  const { setID, setObsModal } = props;
 
   const convertDate = (timestamp) => {
     if (timestamp !== null) {
@@ -15,9 +16,11 @@ export default function PerennialCard (props) {
     return 'n/a'
   }
 
-  const addObs = () => {
-    console.log('plant id', id)
-  }
+  // const addObs = () => {
+  //   setID(id);
+  //   setObsModal(true)
+  //   console.log(common_name,'\'s id', id)
+  // }
 
   return (
     <div className="plantCard">
@@ -26,7 +29,7 @@ export default function PerennialCard (props) {
        Would like image here
       <div className="buttons">
         <button onClick={()=>setID(id)}>Details</button>
-        <button onClick={addObs}>Observation</button>
+        {/* <button onClick={()=>addObs(id)}>Observation</button> */}
       </div>
     </div>
   )

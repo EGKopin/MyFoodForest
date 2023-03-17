@@ -17,9 +17,9 @@ const Nav = () => {
         <li>
           <Link href="/addPlant">Add Plants</Link>
         </li>
-        {/* <li>
-          <Link href="/addObservation">Add Observation</Link>
-        </li> */}
+        <li>
+          <Link href="/timeline">Timeline</Link>
+        </li>
       </ul>
     </nav>
   )

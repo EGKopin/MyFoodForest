@@ -1,20 +1,24 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Context } from "../Context";
 import { server } from '../../config';
 
-export default function AddObservation () {
-  const { userID, setAllObs } = useContext(Context)
+export default function AddObservation ({currentID}) {
+  const { userID, setAllObs, allObs } = useContext(Context)
+
+  useEffect(()=> {
+    setObsDetails(defaultObs)
+  }, [currentID]) 
 
   const defaultObs = {
     user_id: userID,
-    plant_id: null,
+    plant_id: currentID,
     observation_date: null,
     image: '',
     notes: '',
   }
 
   const [ obsDetails, setObsDetails ] = useState(defaultObs)
-  const { plant_id, observation_date, image, notes} = obsDetails;
+  let { observation_date, image, notes} = obsDetails;
 
   const updateForm = (e) => {
       setObsDetails({
@@ -23,8 +27,7 @@ export default function AddObservation () {
       });
     }
   
-  const addObs = (e) => {
-    console.log('add observation', obsDetails)
+  const addObs = () => {
     fetch(`${server}/api/AddObservation`, {
       method:'POST',
       mode: 'cors',
@@ -35,16 +38,16 @@ export default function AddObservation () {
     })
     .then(res => res.json())
     .then(addedobs => { 
-      // setObsDetails(defaultAnnual);
+      setObsDetails(defaultObs);
       console.log('Observation added:', addedobs);
-      // setAllPlants(state=>state.concat(addedplant));
+      setAllObs(state=>state.concat(addedobs));
+      console.log('All observations', allObs)
       })
     .catch ((err) => console.log('error in addObs', err))
   }
 
   return (
     <><br></br>
-      <h3>Observation Form</h3>
       <div className="addPlant obs"> 
         <label>Observation Date:
           <input type="date" name='observation_date' onChange={updateForm} />

@@ -1,22 +1,21 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { Context } from "../Context";
-import moment from "moment"
-import AddObservation from './ObservationForm'
+import moment from "moment";
+import AddObservation from './ObservationForm';
+import PlantObservations from './PlantObservations';
 
 
 export default function PerennialDetails (props) {
-  const { currentID } = props
+  const { currentID, obsModal, setObsModal } = props
   const { allPlants } = useContext(Context);
-  const [ obsModal, setObsModal ] = useState(false)
 
   let currentDetails = {};
 
   const addObs = () => {
     setObsModal(true)
-    console.log('Current plant\'s id', currentID, 'and obsmodal is ', obsModal)
   }
 
-  const UpdateDetails = () => {
+  const UpdatedDetails = () => {
     if (currentID){
     currentDetails = allPlants.filter(plant => plant.id === currentID)[0]
     const { id, common_name, type, scientific_name, planted_date, self_pollinating, bud_break_date, first_bloom_date, last_bloom_date, first_day_fruiting, last_day_fruiting, pruning_details, fruiting_wood, notes } = currentDetails
@@ -42,12 +41,11 @@ export default function PerennialDetails (props) {
   }
 
   useEffect(() => {
-    UpdateDetails();
+    UpdatedDetails();
   }, [currentID]);
 
 
 
-  // Doubt I will need, but leaving in for now
   const convertDate = (timestamp) => {
     if (timestamp !== null) {
     const newDate = new Date(timestamp)
@@ -59,11 +57,14 @@ export default function PerennialDetails (props) {
 
   return (
     <>
-    <div className="plantDetails">
-      <UpdateDetails />
-      <br></br>
-    {obsModal ? <AddObservation /> : null}
-    </div>
+    <section className="plantContainer">
+      <div className="plantDetails">
+        <UpdatedDetails />
+        <br></br>
+      {obsModal ? <AddObservation currentID={currentID}/> : null}
+      </div>
+      <PlantObservations currentID={currentID}/>
+    </section>
     </>
   )
 }

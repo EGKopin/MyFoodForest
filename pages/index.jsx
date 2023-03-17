@@ -10,7 +10,7 @@ import { Context } from '../components/Context';
 // export default function Home({ articles }) {
   
 export default function Home () {
-  const { allPlants, setAllPlants } = useContext(Context)
+  const { allPlants, setAllPlants, setAllObs } = useContext(Context)
 
   const getPlants = () => {
     fetch(`${server}/api/GetAllPlants`)
@@ -21,8 +21,19 @@ export default function Home () {
     .catch ((err) => console.log('error in getPlants', err))
   }
 
+  const getObs = () => {
+    fetch(`${server}/api/GetAllObservations`)
+    .then(res => res.json())
+    .then(allObs => { 
+      setAllObs(allObs);
+      })
+    .catch ((err) => console.log('error in getAllObservations', err))
+  }
+
+
   useEffect(() => {
     getPlants();
+    getObs();
   }, [])
 
   return (
