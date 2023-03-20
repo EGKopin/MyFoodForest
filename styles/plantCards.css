@@ -1,0 +1,66 @@
+.plantContainer {
+display: flex;
+flex-wrap: wrap;
+flex: auto;
+border: 1px dotted pink ;
+/* min-width: 600px; */
+max-width: 650px;
+}
+
+/* Styling for AnnualCard and PerennialCard components */
+.plantCard {
+  width: 150px;
+  height: 150px;
+  border: 1px dotted green ;
+  border-radius: 10px;
+  margin: 5px;
+  padding: 10px;
+  font-size: .9rem;
+  position: relative;
+}
+
+.italics {
+  font-style: italic;
+}
+
+.plantCard .buttons {
+  position: absolute;
+  /* top: 50px; */
+  bottom: 0px;
+  right: 0px;
+  /* padding: 1px 6px; */
+  border-radius: 4px;
+  margin: 4px;
+}
+
+.plantCard .buttons button {
+  margin-left: 4px ;
+}
+
+.details {
+  display: flex;
+}
+
+.details div {
+  margin-right: 10px;
+  bottom: 4px;
+}
+
+/* Styling for pages */
+.mainPlantPage {
+  display: flex;
+  width: auto;
+  border: 1px dotted rgb(11, 86, 105);
+  margin: 5px;
+}
+
+/* Styling for detail components */
+.plantDetails {
+  border: 1px dotted blue ;
+  flex: 2;
+  min-width: 300px;
+  font-size: .9rem;
+  /* max-width: 500px; */
+  margin: 5px;
+  padding: 10px;
+}

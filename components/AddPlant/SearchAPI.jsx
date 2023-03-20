@@ -9,18 +9,17 @@ const SearchAPI = ({ onSubmit }) => {
     setSearchInput(e.target.value)
   }
 
-  // const submitSearch = async () => {
-  //   const res = await fetch(`${server}/api/GetFlora/?string=${searchInput}`);
-  //   const articles = await res.json()
-  //   console.log(articles)
-  // }
+  const submit = () => {
+    onSubmit(searchInput);
+    setSearchInput('');
+  }
 
   return (
     <>
     Add a perennial plant
     <input name='searchInput' value={searchInput} onChange={handleSearch}>
     </input>
-    <button onClick={() => onSubmit(searchInput)}>Search</button>
+    <button onClick={submit}>Search</button>
     </>
   )
 }

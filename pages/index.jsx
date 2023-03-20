@@ -1,17 +1,46 @@
-import { server } from '../config'
-import Image from 'next/image'
-import styles from '../styles/Layout.module.css'
-import ArticleList from '../components/ArticleList'
+import { useContext, useEffect } from 'react';
+import { server } from '../config';
+import Image from 'next/image';
+import styles from '../styles/Layout.module.css';
+import ArticleList from '../components/ArticleList';
+import { Context } from '../components/Context';
 
 
 
+// export default function Home({ articles }) {
+  
+export default function Home () {
+  const { allPlants, setAllPlants, setAllObs } = useContext(Context)
 
-export default function Home({ articles }) {
+  const getPlants = () => {
+    fetch(`${server}/api/GetAllPlants`)
+    .then(res => res.json())
+    .then(allPlants => { 
+      setAllPlants(allPlants);
+      })
+    .catch ((err) => console.log('error in getPlants', err))
+  }
+
+  const getObs = () => {
+    fetch(`${server}/api/GetAllObservations`)
+    .then(res => res.json())
+    .then(allObs => { 
+      setAllObs(allObs);
+      })
+    .catch ((err) => console.log('error in getAllObservations', err))
+  }
+
+
+  useEffect(() => {
+    getPlants();
+    getObs();
+  }, [])
+
   return (
     <>
       <main className={styles.main}>    
 
-        <ArticleList articles={articles} />
+        {/* <ArticleList articles={articles} /> */}
       </main>
     </>
   )
@@ -32,16 +61,16 @@ export default function Home({ articles }) {
 // }
 
 //call to API; requires absolute URL
-export const getStaticProps = async () => {
-  const res = await fetch(`${server}/api/articles`)
-  const articles = await res.json()
+// export const getStaticProps = async () => {
+//   const res = await fetch(`${server}/api/articles`)
+//   const articles = await res.json()
 
-  return {
-    props: {
-      articles
-    }
-  }
-}
+//   return {
+//     props: {
+//       articles
+//     }
+//   }
+// }
 
 //for fetching on every request (slower)
 //getServersideProps

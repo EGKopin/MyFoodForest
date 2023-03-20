@@ -1,4 +1,4 @@
-import SearchPlantCard from '../components/SearchPlantCard'
+import SearchPlantCard from './SearchPlantCard'
 
 const SearchPlantList = ({ plants }) => {
   return (

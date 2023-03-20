@@ -15,6 +15,7 @@
   list-style: none;
 }
 
-.nav ul li a {
-  
+.nav ul li {
+  padding-right: 10px;
+  margin-right: 5px;
 }
