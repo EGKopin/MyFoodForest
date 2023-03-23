@@ -2,9 +2,10 @@ import Head from 'next/head' //Head is used for custom meta tags and titles; gre
 import styles from '../styles/Layout.module.css'
 import Meta from '../components/Meta' // to have different Meta data for the page...
 import { useState } from 'react'
+import { Timeline } from '../components/Timeline'
 
 
-export default function Timeline() {
+export default function TimelinePage() {
   
   return (
     <>
@@ -19,7 +20,9 @@ export default function Timeline() {
 
       <main className={styles.main}>
            <h1>Timeline</h1>
-
+           <section>
+            <Timeline/>
+           </section>
       </main>
     </>
   )
