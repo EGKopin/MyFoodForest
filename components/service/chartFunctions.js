@@ -25,9 +25,11 @@ export const assignedName = {
     ctx.font = 'bolder 12px sans-serif';
     ctx.fillStyle = 'white'; // rgb or could just write the color, ie 'black'
     ctx.textBaseline = 'middle'; //make sure the text is exactly in the middle
-    data.datasets[0].data.forEach((datapoint, index) => {
-      ctx.fillText(datapoint.name, 10, y.getPixelForValue(index))
+    data.datasets.forEach((dataset, index1) => {
+      dataset.data.forEach((datapoint, index2) => {
+      ctx.fillText(datapoint.type, 10, y.getPixelForValue(index1+index2))
     })
+  })
     // ctx.fillText(data.datasets[0].data[0].name, 10, y.getPixelForValue(0)); //(text from the dataset, pixels from left, get index num for each label and pass in) --This is the initial setup, before accounting for all datapoints
   }
 };
@@ -50,37 +52,7 @@ const getOrCreateTooltip = (chart) => {
   return tooltipEl;
 };
 
-//Trigger - 
 export const tooltipInfo = (context) => {
-  const { chart, tooltip } = context;
-
-  const tooltipEl = getOrCreateTooltip(chart);
-
-  //hide tooltip if mouseOut, just using css!
-  if (tooltip.opacity === 0) {
-    tooltipEl.style.opacity = 0;
-  }
-  //adding tooltip text
-  if(tooltip.body) {
-    const titleLines = tooltip.title || []; // || blank?
-    const bodyLines = tooltip.body.map(body => body.lines); //grabs them all in a loop
-    const tooltipLI = document.createElement('li');
-
-    //add title loop
-    // titleLines.forEach(title => {
-    //   tooltipUl.appendChild(tooltipLI);
-    //   const tooltipSpan = document.createElement('span');
-    //   tooltipLI.appendChild(tooltipSpan);
-    //   //create a text node with the text of title
-    //   const tooltipTitle = document.createTextNode(title);
-    //   tooltipSpan.appendChild(tooltipTitle)
-    // })
-  }
-
-  // console.log(tooltip.title, tooltip.dataPoints.dataset.label)
-}
-
-export const test = (context) => {
   // Tooltip Element
   let tooltipEl = document.getElementById('chartjs-tooltip');
   // Create element on first render
@@ -106,38 +78,31 @@ export const test = (context) => {
       tooltipEl.classList.add('no-transform');
   }
 
-  function getBody(bodyItem) {
-      return bodyItem.lines;
+  function getDetails(tooltip) {
+    const curIndex = tooltipModel.dataPoints[0].datasetIndex;
+    const dataObj = tooltipModel.dataPoints[0].dataset.data;
+    let startDate = dataObj[curIndex].dates[0];
+    let endDate = dataObj[curIndex].dates[1];
+    let info = dataObj[curIndex].details;
+    if (info === undefined) info = 'n/a';
+      return {info, startDate, endDate};
   }
 
   // Set Text
   if (tooltipModel.body) {
       const titleLines = tooltipModel.title || [];
-      const bodyLines = tooltipModel.body.map(getBody);
-console.log(tooltipModel.dataPoints[0].dataset.data[0].name)
-      let innerHtml = '<thead>';
+      const details = getDetails(tooltipModel)
+      let innerHtml = `<thead><tr><th>${titleLines}</th></tr></thead><tbody>`;
 
-      titleLines.forEach(function(title) {
-          innerHtml += '<tr><th>' + title + '</th></tr>';
-      });
-      innerHtml += '</thead><tbody>';
-
-      bodyLines.forEach(function(body, i) {
-          const colors = tooltipModel.labelColors[i];
-          let style = 'background:' + colors.backgroundColor;
-          style += '; border-color:' + colors.borderColor;
-          style += '; border-width: 2px';
-          const span = '<span style="' + style + '">' + body + '</span>';
-          innerHtml += '<tr><td>' + span + '</td></tr>';
-      });
-      innerHtml += '</tbody>';
+      const info = `<p>${details.info}</p>`;
+      const dates = `<p>${details.startDate} to ${details.endDate}</p>`
+      innerHtml += `<tr><td>${dates}</td></tr><tr><td>Details:${info}</td></tr></tbody>`;
 
       let tableRoot = tooltipEl.querySelector('table');
       tableRoot.innerHTML = innerHtml;
   }
 
   const position = context.chart.canvas.getBoundingClientRect();
-  // const bodyFont = Chart.helpers.toFont(tooltipModel.options.bodyFont);
 
   // Display, position, and set styles for font
   tooltipEl.style.opacity = 1;
