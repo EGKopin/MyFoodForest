@@ -1,3 +1,4 @@
+import { dateDayAndMonth } from './dateConversions'
 
 //todayLine plugin block
 export const todayLine = {
@@ -80,10 +81,11 @@ export const tooltipInfo = (context) => {
 
   function getDetails(tooltip) {
     const curIndex = tooltipModel.dataPoints[0].datasetIndex;
+    const dataIndex = tooltipModel.dataPoints[0].dataIndex;
     const dataObj = tooltipModel.dataPoints[0].dataset.data;
-    let startDate = dataObj[curIndex].dates[0];
-    let endDate = dataObj[curIndex].dates[1];
-    let info = dataObj[curIndex].details;
+    let startDate = dataObj[dataIndex].dates[0];
+    let endDate = dataObj[dataIndex].dates[1];
+    let info = dataObj[dataIndex].details;
     if (info === undefined) info = 'n/a';
       return {info, startDate, endDate};
   }
@@ -92,14 +94,13 @@ export const tooltipInfo = (context) => {
   if (tooltipModel.body) {
       const titleLines = tooltipModel.title || [];
       const details = getDetails(tooltipModel)
-      let innerHtml = `<thead><tr><th>${titleLines}</th></tr></thead><tbody>`;
-
-      const info = `<p>${details.info}</p>`;
-      const dates = `<p>${details.startDate} to ${details.endDate}</p>`
-      innerHtml += `<tr><td>${dates}</td></tr><tr><td>Details:${info}</td></tr></tbody>`;
-
       let tableRoot = tooltipEl.querySelector('table');
-      tableRoot.innerHTML = innerHtml;
+      tableRoot.innerHTML = `
+        <thead><tr><th>${titleLines}</th></tr></thead>
+        <tbody>
+          <tr><td><p>${dateDayAndMonth(details.startDate)} to ${dateDayAndMonth(details.endDate)}</p></td></tr>
+          <tr><td>Details:<p>${details.info}</p></td></tr>
+        </tbody>`;
   }
 
   const position = context.chart.canvas.getBoundingClientRect();

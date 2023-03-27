@@ -1,14 +1,22 @@
 import React, { useContext, useEffect } from "react";
 import { Context } from "../Context";
-import moment from "moment"
+import moment from "moment";
+import AddObservation from './ObservationForm';
+import PlantObservations from './PlantObservations';
 
 export default function AnnualDetails (props) {
   const { currentID } = props
   const { allPlants } = useContext(Context);
+
   let currentDetails = {};
 
-  const addObs = () => {
-    console.log('Current plant\'s id', currentID)
+  const convertDate = (timestamp) => {
+    if (timestamp !== null) {
+    const newDate = new Date(timestamp)
+    const date = moment(newDate).format('L')
+    return date
+    }
+    return 'n/a'
   }
 
   const UpdatedDetails = () => {
@@ -30,7 +38,6 @@ export default function AnnualDetails (props) {
       <div>Soil Block: Favorite </div>
       <div>Weeks To Transplant: <br></br>{weeks_to_transplant}</div>
       <div>Notes:<br></br>{notes}</div>
-      <button onClick={addObs}>Add observation</button>
       </>
     )
     }
@@ -41,20 +48,16 @@ export default function AnnualDetails (props) {
   }, [currentID]);
 
 
-
-  // Doubt I will need, but leaving in for now
-  const convertDate = (timestamp) => {
-    if (timestamp !== null) {
-    const newDate = new Date(timestamp)
-    const date = moment(newDate).format('L')
-    return date
-    }
-    return 'n/a'
-  }
-
   return (
-    <div className="plantDetails">
-      <UpdatedDetails />
-    </div>
+    <>
+    <section className="plantContainer">
+      <div className="plantDetails">
+        {currentID ? <UpdatedDetails /> : null }
+        <br></br>
+        {currentID ? <AddObservation currentID={currentID}/> : null }
+      </div>
+      {currentID ? <PlantObservations currentID={currentID}/> : null }
+    </section>
+    </>
   )
 }

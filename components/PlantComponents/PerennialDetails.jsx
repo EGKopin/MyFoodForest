@@ -6,13 +6,18 @@ import PlantObservations from './PlantObservations';
 
 
 export default function PerennialDetails (props) {
-  const { currentID, obsModal, setObsModal } = props
+  const { currentID } = props
   const { allPlants } = useContext(Context);
 
   let currentDetails = {};
 
-  const addObs = () => {
-    setObsModal(true)
+  const convertDate = (timestamp) => {
+    if (timestamp !== null) {
+    const newDate = new Date(timestamp)
+    const date = moment(newDate).format('L')
+    return date
+    }
+    return 'n/a'
   }
 
   const UpdatedDetails = () => {
@@ -34,7 +39,6 @@ export default function PerennialDetails (props) {
       <div>Fruiting Wood: {fruiting_wood}</div>
       <div>Pruning Details: <br></br>{pruning_details}</div>
       <div>Notes:<br></br>{notes}</div>
-      <button onClick={addObs}>Add observation</button>
       </>
     )
     }
@@ -43,27 +47,17 @@ export default function PerennialDetails (props) {
   useEffect(() => {
     UpdatedDetails();
   }, [currentID]);
-
-
-
-  const convertDate = (timestamp) => {
-    if (timestamp !== null) {
-    const newDate = new Date(timestamp)
-    const date = moment(newDate).format('L')
-    return date
-    }
-    return 'n/a'
-  }
+   
 
   return (
     <>
     <section className="plantContainer">
       <div className="plantDetails">
-        <UpdatedDetails />
+        {currentID ? <UpdatedDetails /> : null }
         <br></br>
-      {obsModal ? <AddObservation currentID={currentID}/> : null}
+        {currentID ? <AddObservation currentID={currentID}/> : null }
       </div>
-      <PlantObservations currentID={currentID}/>
+      {currentID ? <PlantObservations currentID={currentID}/> : null }
     </section>
     </>
   )
