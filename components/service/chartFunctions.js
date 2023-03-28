@@ -1,4 +1,5 @@
-import { dateDayAndMonth } from './dateConversions'
+import { dateDayAndMonth } from './dateConversions';
+import { now } from '../service/dateConversions'
 
 //todayLine plugin block
 export const todayLine = {
@@ -11,8 +12,8 @@ export const todayLine = {
     ctx.lineWidth = 3;
     ctx.strokeStyle = 'rgb(162, 162, 235)';
     ctx.setLineDash([3, 7]) //pixels of solid color, pixels of white space
-    ctx.moveTo(x.getPixelForValue(new Date()), top)//like drawing with a pencil, with coordinates (x and y). moveTo is the starting point 
-    ctx.lineTo(x.getPixelForValue(new Date()), bottom)//lineTo is where the line ends
+    ctx.moveTo(x.getPixelForValue(now), top)//like drawing with a pencil, with coordinates (x and y). moveTo is the starting point 
+    ctx.lineTo(x.getPixelForValue(now), bottom)//lineTo is where the line ends
     ctx.stroke(); //the actual drawing of the line
     ctx.setLineDash([])//not sure why, but it helps with something
   }
@@ -98,8 +99,12 @@ export const tooltipInfo = (context) => {
       tableRoot.innerHTML = `
         <thead><tr><th>${titleLines}</th></tr></thead>
         <tbody>
-          <tr><td><p>${dateDayAndMonth(details.startDate)} to ${dateDayAndMonth(details.endDate)}</p></td></tr>
-          <tr><td>Details:<p>${details.info}</p></td></tr>
+          <tr><td>Date Range:
+            <p>${dateDayAndMonth(details.startDate)} to ${dateDayAndMonth(details.endDate)}</p>
+          </td></tr>
+          <tr><td>Details:
+            <p>${details.info}</p>
+          </td></tr>
         </tbody>`;
   }
 

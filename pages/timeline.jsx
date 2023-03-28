@@ -3,10 +3,17 @@ import styles from '../styles/Layout.module.css'
 import Meta from '../components/Meta' // to have different Meta data for the page...
 import { Timeline } from '../components/Timeline';
 import TimelineFilters from '../components/TimelineFilters';
+import { useState } from 'react';
 
 
 export default function TimelinePage() {
-  
+  const [ categories, setCategories ] = useState({
+    pruning: [],
+    budBreak: [],
+    flowering: [],
+    fruiting: [],
+  });
+
   return (
     <>
     <Meta title='Timeline' /> 
@@ -19,11 +26,15 @@ export default function TimelinePage() {
       </Head>
 
       <main className={styles.main}>
-           <h1>Timeline</h1>
-           <TimelineFilters />
-           <section>
-            <Timeline/>
-           </section>
+        <h1>Timeline</h1>
+        <TimelineFilters 
+          setCategories={setCategories}    
+        />
+        <section>
+          <Timeline
+            categories={categories}  
+          />
+        </section>
       </main>
     </>
   )

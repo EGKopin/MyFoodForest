@@ -23,12 +23,18 @@ export default function PerennialDetails (props) {
   const UpdatedDetails = () => {
     if (currentID){
     currentDetails = allPlants.filter(plant => plant.id === currentID)[0]
-    const { id, common_name, type, scientific_name, planted_date, self_pollinating, bud_break_date, first_bloom_date, last_bloom_date, first_day_fruiting, last_day_fruiting, pruning_details, fruiting_wood, notes } = currentDetails
+    const { id, common_name, type, scientific_name, planted_date, self_pollinating, bud_break_date, first_bloom_date, last_bloom_date, first_day_fruiting, last_day_fruiting, pruning_details, fruiting_wood, notes, prune_start, prune_end } = currentDetails
     return (
       <>
       <h1>{common_name}</h1>
-       <h4>{type}, <span className="italics"> {scientific_name}</span></h4>
-       <section className="details">
+      <h4>{type}, <span className="italics"> {scientific_name}</span></h4>
+      <section className="details">
+        <div>Pruning Window: {convertDate(prune_start)} to {convertDate(prune_end)}</div>
+      </section>
+      <section className="details">
+        <div>Bud Break: {convertDate(bud_break_date)}</div>
+      </section>
+      <section className="details">
         <div>First Bloom: {convertDate(first_bloom_date)}</div>
         <div>Last Bloom: {convertDate(last_bloom_date)}</div>
       </section>

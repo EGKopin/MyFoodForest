@@ -21,12 +21,14 @@ export default function AddPerennial () {
     pruning_details: '',
     fruiting_wood: '',
     notes: '',
-    isannual: false
+    isannual: false,
+    prune_start: null,
+    prune_end: null
   }
 
   const [ plantDetails, setPlantDetails ] = useState(defaultPerennial)
 
-  const { common_name, type, scientific_name, planted_date, bud_break_date, first_bloom_date, last_bloom_date, first_day_fruiting, last_day_fruiting, pruning_details, fruiting_wood, notes} = plantDetails;
+  const { common_name, type, scientific_name, planted_date, bud_break_date, first_bloom_date, last_bloom_date, first_day_fruiting, last_day_fruiting, pruning_details, fruiting_wood, notes, prune_start, prune_end} = plantDetails;
 
   const updateForm = (e) => {
     if (e.target.name === 'self_pollinating'){
@@ -87,6 +89,12 @@ export default function AddPerennial () {
         </label><br></br>
         <br></br>
         <h4>Additional Details</h4>
+        <label>Prune Range Start:
+          <input type="date" name="prune_start"  onChange={updateForm} />
+        </label><br></br>
+        <label>Prune Range End::
+          <input type="date" name="prune_end"  onChange={updateForm} />
+        </label><br></br>
         <label>Bud Break:
           <input type="date" name="bud_break_date"  onChange={updateForm} />
         </label><br></br>
