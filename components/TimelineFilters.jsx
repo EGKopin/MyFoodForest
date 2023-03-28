@@ -17,19 +17,19 @@ const TimelineFilters = ({ setCategories }) => {
         type: plant.type,
         details: plant.pruning_details
       };
+      //if there are both dates, use
       if (plant.prune_start && plant.prune_end){
         newElement.dates = [convertYear(plant.prune_start), convertYear(plant.prune_end)];
       } 
+      //if there is only a start date, infer end date
       else if (plant.prune_start && !plant.prune_end){
         newElement.dates = [convertYear(plant.prune_start), inferEnd(plant.prune_start)]
       }
+      //if there is only a bud break date, infer best pruning times
       else if (!plant.prune_start && !plant.prune_end && plant.bud_break_date){
         const inferDates = inferPrune(plant.bud_break_date)
-        // const inferEnd = ;
         newElement.dates = inferDates
-      } else {
-        newElement.dates = ['2022-02-01', '2022-03-01'];
-      }
+       }        
       return newElement;
     })
     setCategories(state => ({

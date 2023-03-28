@@ -1,7 +1,7 @@
 .addPlant {
   padding: 10px;
-  margin: 5px;
-  border: 1px dotted red ;
+  margin: 1px;
+  border: 1px dotted rgb(102, 98, 98) ;
   border-radius: 10px;
   /* height: 500px; */
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -9,8 +9,9 @@
 }
 
  .obs {
-  padding: 10px 0px;
-  width: auto;
+  padding: 10px 12px;
+  margin: 3px;
+  /* width:max-content; */
 }
 
 .addPlant label {

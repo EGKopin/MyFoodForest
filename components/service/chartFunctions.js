@@ -44,9 +44,9 @@ const getOrCreateTooltip = (chart) => {
   if (!tooltipEl) {
     tooltipEl = document.createElement('div');
     tooltipEl.id = 'chartjs-tooltip';
-    tooltipEl.classList.add('tooltipDesign');
+    // tooltipEl.classList.add('tooltipDesign');
     let tooltipUl = document.createElement('ul');
-    tooltipUl.classList.add('tooltipUl');
+    // tooltipUl.classList.add('tooltipUl');
 
     tooltipEl.appendChild(tooltipUl);
     chart.canvas.parentNode.appendChild(tooltipEl);
@@ -61,7 +61,7 @@ export const tooltipInfo = (context) => {
   if (!tooltipEl) {
       tooltipEl = document.createElement('div');
       tooltipEl.id = 'chartjs-tooltip';
-      tooltipEl.innerHTML = '<table></table>';
+      tooltipEl.innerHTML = '<table class="chartTooltip"></table>';
       document.body.appendChild(tooltipEl);
   }
 
@@ -116,6 +116,6 @@ export const tooltipInfo = (context) => {
   tooltipEl.style.left = position.left + window.pageXOffset + tooltipModel.caretX + 'px';
   tooltipEl.style.top = position.top + window.pageYOffset + tooltipModel.caretY + 'px';
   // tooltipEl.style.font = bodyFont.string;
-  tooltipEl.style.padding = tooltipModel.padding + 'px ' + tooltipModel.padding + 'px';
-  tooltipEl.style.pointerEvents = 'none';
+  // tooltipEl.style.padding = tooltipModel.padding + 'px ' + tooltipModel.padding + 'px';
+  // tooltipEl.style.pointerEvents = 'none';
 }

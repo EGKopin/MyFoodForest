@@ -25,8 +25,11 @@ export default function PerennialDetails (props) {
     currentDetails = allPlants.filter(plant => plant.id === currentID)[0]
     const { id, common_name, type, scientific_name, planted_date, self_pollinating, bud_break_date, first_bloom_date, last_bloom_date, first_day_fruiting, last_day_fruiting, pruning_details, fruiting_wood, notes, prune_start, prune_end } = currentDetails
     return (
-      <>
-      <h1>{common_name}</h1>
+      <div>
+      <div className="detailHeader">
+        <h1>{common_name}</h1> 
+       <button className="updateBtn">Update</button>
+      </div>
       <h4>{type}, <span className="italics"> {scientific_name}</span></h4>
       <section className="details">
         <div>Pruning Window: {convertDate(prune_start)} to {convertDate(prune_end)}</div>
@@ -45,9 +48,10 @@ export default function PerennialDetails (props) {
       <div>Fruiting Wood: {fruiting_wood}</div>
       <div>Pruning Details: <br></br>{pruning_details}</div>
       <div>Notes:<br></br>{notes}</div>
-      </>
-    )
-    }
+      
+      </div>
+      );
+    };
   }
 
   useEffect(() => {
@@ -63,7 +67,9 @@ export default function PerennialDetails (props) {
         <br></br>
         {currentID ? <AddObservation currentID={currentID}/> : null }
       </div>
-      {currentID ? <PlantObservations currentID={currentID}/> : null }
+      <div className="plantDetails">
+        {currentID ? <PlantObservations currentID={currentID}/> : null }
+      </div>
     </section>
     </>
   )

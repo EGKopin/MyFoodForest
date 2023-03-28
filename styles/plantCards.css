@@ -64,3 +64,15 @@ max-width: 650px;
   margin: 5px;
   padding: 10px;
 }
+
+.updateBtn {
+  /* display: inline-block; */
+  /* position: relative; */
+  padding: 1px 5px;
+  margin: 2px;
+}
+
+.detailHeader {
+  display: flex;
+  justify-content: space-between;
+}

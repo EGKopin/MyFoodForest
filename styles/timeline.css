@@ -24,3 +24,12 @@
   font-family: sans-serif;
   text-transform: uppercase;
 }
+
+.chartTooltip {
+  width: 400px;
+  border: 2px green solid;
+  border-radius: 10px;
+  background-color: white;
+  opacity: 90%;
+  color: black;
+}
