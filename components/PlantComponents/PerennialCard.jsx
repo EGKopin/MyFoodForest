@@ -13,7 +13,8 @@ export default function PerennialCard (props) {
   return (
     <div className="plantCard">
       <h1>{common_name}</h1>
-      <h4>{type}, <span className="italics"> {scientific_name}</span></h4>
+      <h4>{type}</h4>
+       <span className="italics"> {scientific_name}</span>
       <div className="buttons">
         <button onClick={reset}>Details</button>
       </div>

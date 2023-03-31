@@ -1,3 +1,13 @@
+/* ----- Styling for Pages ----- */
+.mainPlantPage {
+  display: flex;
+  width: auto;
+  border: 1px dotted rgb(11, 86, 105);
+  margin: 5px;
+}
+
+/* ----- Styling for Card Container ----- */
+
 .plantContainer {
 display: flex;
 flex-wrap: wrap;
@@ -9,9 +19,9 @@ justify-content: flex-end;
 align-content: flex-start
 }
 
-/* Styling for AnnualCard and PerennialCard components */
+/* ----- Styling for AnnualCard and PerennialCard components ----- */
 .plantCard {
-  width: 150px;
+  width: 200px;
   height: 150px;
   border: 1px dotted green ;
   border-radius: 10px;
@@ -39,24 +49,7 @@ align-content: flex-start
   margin-left: 4px ;
 }
 
-.details {
-  display: flex;
-}
-
-.details div {
-  margin-right: 10px;
-  bottom: 4px;
-}
-
-/* Styling for pages */
-.mainPlantPage {
-  display: flex;
-  width: auto;
-  border: 1px dotted rgb(11, 86, 105);
-  margin: 5px;
-}
-
-/* Styling for detail components */
+/* ----- Styling for detail components ----- */
 .plantDetails {
   border: 1px dotted blue ;
   flex: 2;
@@ -78,3 +71,14 @@ align-content: flex-start
   display: flex;
   justify-content: space-between;
 }
+
+.details {
+  display: flex;
+}
+
+.details div {
+  margin-right: 10px;
+  bottom: 4px;
+}
+
+/* ----- End for detail components ----- */

@@ -41,12 +41,10 @@ export default function PerennialDetails (props) {
           <div>Bud Break: {convertDate(bud_break_date)}</div>
         </section>
         <section className="details">
-          <div>First Bloom: {convertDate(first_bloom_date)}</div>
-          <div>Last Bloom: {convertDate(last_bloom_date)}</div>
+          <div>Flowers from {convertDate(first_bloom_date)} to{convertDate(last_bloom_date)}</div>
         </section>
         <section className="details">
-          <div>Fruiting Start: {convertDate(first_day_fruiting)}</div>    
-          <div>Fruiting End: {convertDate(last_day_fruiting)}</div>
+          <div>Fruits from {convertDate(first_day_fruiting)} to {convertDate(last_day_fruiting)}</div>
         </section>
         <div>Fruiting Wood: {fruiting_wood}</div>
         <div>Pruning Details: <br></br>{pruning_details}</div>
@@ -63,17 +61,12 @@ export default function PerennialDetails (props) {
 
   return (
     <>
-    <section className="plantContainer">
-      <div>
-        {currentID && !updateModal ? <UpdatedDetails /> : null }
-        </div>
-        <div className="plantDetails">
-        {currentID && !updateModal ? <AddObservation currentID={currentID}/> : null }
-        </div>
-        {updateModal ? <PerennialUpdate id={currentID} details={currentDetails} setUpdateModal={setUpdateModal}/> : null}
-        <br></br>
-        {/* <div className="plantDetails"> */}
-      {/* </div> */}
+    <section>
+      {currentID && !updateModal ? <UpdatedDetails /> : null }
+      {currentID && !updateModal ? <AddObservation currentID={currentID}/> : null }
+
+      {updateModal ? <PerennialUpdate id={currentID} details={currentDetails} setUpdateModal={setUpdateModal}/> : null}
+
       <div className="plantDetails">
         {currentID ? <PlantObservations currentID={currentID}/> : null }
       </div>

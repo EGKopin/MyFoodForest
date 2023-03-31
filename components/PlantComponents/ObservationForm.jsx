@@ -47,18 +47,17 @@ export default function AddObservation ({currentID}) {
   }
 
   return (
-    <><br></br>
-      <div className="addPlant obs"> 
-        <label>Observation Date:
-          <input type="date" name='observation_date' onChange={updateForm} />
-        </label><br></br>
-        <label>Image Link:
-          <input type="text" name='image' value={image} onChange={updateForm} />
-        </label><br></br> 
+    <>
+      <div className="addPlant"> 
+        <label for='observation_date'>Observation Date:</label>
+        <input type="date" id='observation_date' name='observation_date' onChange={updateForm} />
+        
+        <label for='image'>Image Link:</label>
+        <input type="text" name='image' id='image' value={image} onChange={updateForm} />
+        
         <div className="notes">
-          <label>Notes:
-            <input type="text" name='notes' value={notes} onChange={updateForm} />
-          </label><br></br>      
+          <label for='notes'>Notes:</label><br></br>
+          <textarea id= 'notes' name='notes' value={notes} onChange={updateForm} />   
         </div>
         <button className='addButton' onClick={addObs} >Submit</button>
       </div>

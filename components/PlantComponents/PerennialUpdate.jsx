@@ -5,7 +5,9 @@ import { server } from '../../config'
 export default function PerennialUpdate ({id, details, setUpdateModal}) {
   const { setAllPlants } = useContext(Context);
 
-  const [ plantDetails, setPlantDetails ] = useState(details)
+  const [ plantDetails, setPlantDetails ] = useState(details);
+
+  plantDetails.id = id;
 
   const { common_name, type, scientific_name, planted_date, bud_break_date, first_bloom_date, last_bloom_date, first_day_fruiting, last_day_fruiting, pruning_details, fruiting_wood, notes, prune_start, prune_end} = plantDetails;
 
@@ -21,34 +23,42 @@ export default function PerennialUpdate ({id, details, setUpdateModal}) {
         [e.target.name]: e.target.value
       });
     }
-    console.log(plantDetails)
   }
 
+  function scrubDates (plant) {
+    for (let [key, value] of Object.entries(plant)){
+      if (key === 'planted_date'|| key === 'bud_break_date'  ||key ==='first_bloom_date'|| key ==='last_bloom_date'|| key ==='first_day_fruiting' ||key ==='last_day_fruiting'|| key ==='prune_start'||key === 'prune_end') {
+      if (value !== null) plant[key] = `${value}`;
+      }
+    }
+    return plant;
+  }
+
+  
   const updatePerennial = () => {
-    // e.preventDefault()
-    console.log('update plant')
-    setUpdateModal(false)
+    const plant = scrubDates(plantDetails)
+    console.log(plant)
     // fetch(`${server}/api/UpdatePerennial`, {
-    //   method:'POST',
+    //   method:'PUT',
     //   mode: 'cors',
-    //   body: JSON.stringify(plantDetails),
+    //   body: JSON.stringify(plant),
     //   headers: {
     //     'Content-type': 'application/json; charset=UTF-8',
     //   },
     // })
     // .then(res => res.json())
-    // .then(addedplant => {
-    //   setPlantDetails(defaultPerennial);
-    //   console.log('Perennial Added', addedplant);
-    //   setAllPlants(state=>state.concat(addedplant));
+    // .then(updatedPlant => {
+    //   // setPlantDetails(defaultPerennial);
+    //   console.log('Perennial Updated', updatedPlant);
+    //   // setUpdateModal(false)
+    //   // setAllPlants(state=>state.concat(addedplant));
 
     //   })
-    // .catch ((err) => console.log('error in AddToPlants', err))
+    // .catch ((err) => console.log('error in PerennialUpdate', err))
   }
 
   return (
     <div>
-      <br></br>
       <div className="addPlant">
         <label for="common_name">Common name:</label>
         <input type="text" id="common_name" name='common_name' value={common_name} onChange={updateForm} />
