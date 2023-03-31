@@ -3,8 +3,10 @@ display: flex;
 flex-wrap: wrap;
 flex: auto;
 border: 1px dotted pink ;
-/* min-width: 600px; */
-max-width: 650px;
+min-width: 400px;
+max-width: 800px;
+justify-content: flex-end;  
+align-content: flex-start
 }
 
 /* Styling for AnnualCard and PerennialCard components */
@@ -58,7 +60,7 @@ max-width: 650px;
 .plantDetails {
   border: 1px dotted blue ;
   flex: 2;
-  min-width: 300px;
+  /* min-width: 400px; */
   font-size: .9rem;
   /* max-width: 500px; */
   margin: 5px;

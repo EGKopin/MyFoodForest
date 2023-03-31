@@ -9,6 +9,7 @@ import { useState } from 'react'
 
 export default function PHome() {
   const [ currentID, setCurrentID ] = useState(null);
+  const [ updateModal, setUpdateModal ] = useState(false);
 
   return (
     <>
@@ -27,9 +28,12 @@ export default function PHome() {
            <div className='mainPlantPage'>
             <PerennialContainer 
               setID={setCurrentID}
+              setUpdateModal={setUpdateModal}
               />
             <PerennialDetails 
               currentID={currentID}
+              setUpdateModal={setUpdateModal}
+              updateModal={updateModal}
             />
            </div>
       </main>

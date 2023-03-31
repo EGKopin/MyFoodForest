@@ -2,31 +2,10 @@ import React, { useState, useContext } from "react";
 import { Context } from "../Context";
 import { server } from '../../config'
 
-
-
-export default function AddPerennial () {
+export default function PerennialUpdate ({id, details, setUpdateModal}) {
   const { setAllPlants } = useContext(Context);
 
-  const defaultPerennial = {
-    common_name: '',
-    type: '',
-    scientific_name: '',
-    planted_date: null,
-    self_pollinating: false,
-    bud_break_date: null,
-    first_bloom_date: null,
-    last_bloom_date: null,
-    first_day_fruiting: null,
-    last_day_fruiting: null,
-    pruning_details: '',
-    fruiting_wood: '',
-    notes: '',
-    isannual: false,
-    prune_start: null,
-    prune_end: null
-  }
-
-  const [ plantDetails, setPlantDetails ] = useState(defaultPerennial)
+  const [ plantDetails, setPlantDetails ] = useState(details)
 
   const { common_name, type, scientific_name, planted_date, bud_break_date, first_bloom_date, last_bloom_date, first_day_fruiting, last_day_fruiting, pruning_details, fruiting_wood, notes, prune_start, prune_end} = plantDetails;
 
@@ -42,27 +21,29 @@ export default function AddPerennial () {
         [e.target.name]: e.target.value
       });
     }
+    console.log(plantDetails)
   }
 
-  const addPlant = () => {
+  const updatePerennial = () => {
     // e.preventDefault()
-    console.log('add plant')
-    fetch(`${server}/api/AddToPerennials`, {
-      method:'POST',
-      mode: 'cors',
-      body: JSON.stringify(plantDetails),
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-      },
-    })
-    .then(res => res.json())
-    .then(addedplant => {
-      setPlantDetails(defaultPerennial);
-      console.log('Perennial Added', addedplant);
-      setAllPlants(state=>state.concat(addedplant));
+    console.log('update plant')
+    setUpdateModal(false)
+    // fetch(`${server}/api/UpdatePerennial`, {
+    //   method:'POST',
+    //   mode: 'cors',
+    //   body: JSON.stringify(plantDetails),
+    //   headers: {
+    //     'Content-type': 'application/json; charset=UTF-8',
+    //   },
+    // })
+    // .then(res => res.json())
+    // .then(addedplant => {
+    //   setPlantDetails(defaultPerennial);
+    //   console.log('Perennial Added', addedplant);
+    //   setAllPlants(state=>state.concat(addedplant));
 
-      })
-    .catch ((err) => console.log('error in AddToPlants', err))
+    //   })
+    // .catch ((err) => console.log('error in AddToPlants', err))
   }
 
   return (
@@ -146,7 +127,7 @@ export default function AddPerennial () {
           <label for='notes' >Other Notes:</label>
           <textarea name='notes' id='notes' value={notes} onChange={updateForm} />      
         </div>
-        <button className='addButton' onClick={addPlant} >Submit</button>
+        <button className='addButton' onClick={updatePerennial} >Submit</button>
       </div>
     </div>
   )
