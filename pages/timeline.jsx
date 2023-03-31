@@ -1,11 +1,19 @@
 import Head from 'next/head' //Head is used for custom meta tags and titles; great for SEO
 import styles from '../styles/Layout.module.css'
 import Meta from '../components/Meta' // to have different Meta data for the page...
-import { useState } from 'react'
+import { Timeline } from '../components/Timeline';
+import TimelineFilters from '../components/TimelineFilters';
+import { useState } from 'react';
 
 
-export default function Timeline() {
-  
+export default function TimelinePage() {
+  const [ categories, setCategories ] = useState({
+    pruning: [],
+    budBreak: [],
+    flowering: [],
+    fruiting: [],
+  });
+
   return (
     <>
     <Meta title='Timeline' /> 
@@ -18,8 +26,15 @@ export default function Timeline() {
       </Head>
 
       <main className={styles.main}>
-           <h1>Timeline</h1>
-
+        <h1>Timeline</h1>
+        <TimelineFilters 
+          setCategories={setCategories}    
+        />
+        <section>
+          <Timeline
+            categories={categories}  
+          />
+        </section>
       </main>
     </>
   )

@@ -9,7 +9,11 @@ const AnnualContainer = ({setID}) => {
     <section className="plantContainer">
       {allPlants.map(plant => {
         if (plant.isannual)
-        return <AnnualCard props={plant} key={plant.id} setID={setID}></AnnualCard>
+        return <AnnualCard 
+          props={plant} 
+          key={plant.id} 
+          setID={setID}
+        />
       })}
     </section>
   )

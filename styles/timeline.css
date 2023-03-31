@@ -1,0 +1,35 @@
+.timelineSection {
+  width: 80vw;
+  max-width: 1000px;
+  border: 2px pink solid;
+}
+
+.tooltipDesign {
+  border: 2px pink solid;
+  height: 20px;
+  width: 20px;
+  pointer-events: none;
+  position: absolute;
+  transform: translate(-50%, 0);
+  transition: all;
+  opacity: 1;
+}
+
+.tooltipUl {
+  margin: 0;
+  list-style: none;
+  padding: 0;
+  text-align: center;
+  font-weight: bold;
+  font-family: sans-serif;
+  text-transform: uppercase;
+}
+
+.chartTooltip {
+  width: 400px;
+  border: 2px green solid;
+  border-radius: 10px;
+  background-color: white;
+  opacity: 90%;
+  color: black;
+}

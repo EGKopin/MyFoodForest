@@ -2,9 +2,8 @@ import React, { useContext } from "react"
 import PerennialCard from "../components/PlantComponents/PerennialCard"
 import { Context } from "../components/Context"
 
-export default function PerennialContainer ({setID, obsModal, setObsModal}) {
+export default function PerennialContainer ({setID, setUpdateModal}) {
   const { allPlants } = useContext(Context);
-  
   
   return (
     <section className="plantContainer">
@@ -15,7 +14,7 @@ export default function PerennialContainer ({setID, obsModal, setObsModal}) {
             props={plant} 
             key={plant.id} 
             setID={setID}
-            setObsModal={setObsModal}
+            setUpdateModal={setUpdateModal}
             />
         )
       })}

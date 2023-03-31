@@ -1,55 +1,69 @@
+/* ----- Styling for Add Plant and Update Plant Forms----- */
 .addPlant {
   padding: 10px;
-  margin: 5px;
-  border: 1px dotted red ;
+  margin: 1px;
+  border: 1px dotted rgb(102, 98, 98) ;
   border-radius: 10px;
   /* height: 500px; */
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   width: 400px;
 }
 
- .obs {
-  padding: 10px 0px;
-  width: auto;
-}
-
 .addPlant label {
-  display: block;
-  padding: 0px;
-  /* margin: 5px; */
   font: .9rem sans-serif;
-  /* position: relative; */
-  /* vertical-align: bottom; */
+  vertical-align: top;
 }
 
 .addPlant input {
   padding-left: 4px;
-  /* margin-top: 1px; */
   margin-left: 10px;
   float: right;
-  width: 200px;
-  
+  width: 250px;
+}
+
+.addPlant textarea {
+  padding-left: 4px;
+  margin-left: 10px;
+  float: right;
+  width: 100%;
+  height: 100px;
+  resize: vertical;
 }
 
 .notes {
-  /* border: 1px dotted red ; */
-  height: 100px;
+  height: 130px;
 }
 
-/* .notes label {
-  line-height: 60px;
-} */
+/* --- Styling for form elements on a single line --- */
 
-.notes input {
-  height: 90px;
-  /* border: 1px dotted red ; */
-  /* margin-bottom: 10px; */
+.form-header{
+  font: .9rem sans-serif;
+  font-weight: bold;
+  display: table;
+  /* margin: 0 auto; */
+  padding-top: 10px;
+}
+
+.form-row {
+  display: flex;
+  padding-left: 0px;
+  margin-left: -5px;
+}
+
+.form-pair {
+  width: 50%;
+  padding:5px;
+}
+
+.form-pair input {
+
+  padding-left: 10px;
+  width: 100%;
 }
 
 .addButton {
   float:right;
-  padding: 2px 5px;
-  
+  padding: 2px 5px; 
 }
 
 .addType {
@@ -59,4 +73,10 @@
 .addType select {
   margin-left: 10px;
   padding-left: 5px;
+}
+
+/* ----- Styling for Observation Form ----- */
+
+.obs {
+  /* padding: 10px 12px; */
 }

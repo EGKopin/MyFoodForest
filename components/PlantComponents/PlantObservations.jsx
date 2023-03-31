@@ -9,7 +9,6 @@ export default function PlantObservations ({currentID}) {
   
   function ConstructObs  ()  {
     const filteredObs = allObs.filter(obs => obs.plant_id === currentID)
-    console.log('obs for',currentID,filteredObs)
     obsDisplay = filteredObs.map(obs => {
       return (
         <li key={obs.id}>
@@ -34,7 +33,7 @@ export default function PlantObservations ({currentID}) {
   }, [currentID]);
 
   return (
-    <section className="plantDetails"> 
+    <section> 
     Observations
     <ul>
     {currentID ? <ConstructObs /> : null}

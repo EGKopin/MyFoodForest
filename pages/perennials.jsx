@@ -9,7 +9,7 @@ import { useState } from 'react'
 
 export default function PHome() {
   const [ currentID, setCurrentID ] = useState(null);
-  const [ obsModal, setObsModal ] = useState(false)
+  const [ updateModal, setUpdateModal ] = useState(false);
 
   return (
     <>
@@ -28,12 +28,12 @@ export default function PHome() {
            <div className='mainPlantPage'>
             <PerennialContainer 
               setID={setCurrentID}
-              setObsModal={setObsModal}
+              setUpdateModal={setUpdateModal}
               />
             <PerennialDetails 
               currentID={currentID}
-              obsModal={obsModal}
-              setObsModal={setObsModal}
+              setUpdateModal={setUpdateModal}
+              updateModal={updateModal}
             />
            </div>
       </main>
