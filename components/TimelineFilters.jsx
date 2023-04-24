@@ -22,14 +22,14 @@ const TimelineFilters = ({ setCategories }) => {
         newElement.dates = [convertYear(plant.prune_start), convertYear(plant.prune_end)];
       } 
       //if there is only a start date, infer end date
-      else if (plant.prune_start && !plant.prune_end){
-        newElement.dates = [convertYear(plant.prune_start), inferEnd(plant.prune_start)]
-      }
+      // else if (plant.prune_start && !plant.prune_end){
+      //   newElement.dates = [convertYear(plant.prune_start), inferEnd(plant.prune_start)]
+      // }
       //if there is only a bud break date, infer best pruning times
-      else if (!plant.prune_start && !plant.prune_end && plant.bud_break_date){
-        const inferDates = inferPrune(plant.bud_break_date)
-        newElement.dates = inferDates
-       }        
+      // else if (!plant.prune_start && !plant.prune_end && plant.bud_break_date){
+      //   const inferDates = inferPrune(plant.bud_break_date)
+      //   newElement.dates = inferDates
+      //  }        
       return newElement;
     })
     setCategories(state => ({
@@ -79,7 +79,7 @@ const TimelineFilters = ({ setCategories }) => {
         name:plant.common_name,
         type: plant.type,
         // details: plant.fruiting_wood,
-        dates: [convertYear(plant.bud_break_date), convertYear(plant.bud_break_date)]
+        dates: [convertYear(plant.first_bloom_date), convertYear(plant.last_bloom_date)]
       }
       return newElement;
     })

@@ -20,6 +20,16 @@ export const dateDayAndMonth = (timestamp) => {
   return 'n/a'
 }
 
+//formats date to show in HTML form Date inputs
+export const formatForForm = (timestamp) => {
+  if(timestamp){
+    const newDate = new Date(timestamp)
+    const date = moment(newDate).format('YYYY-MM-DD')
+    return date;  
+  }
+  return 'n/a'
+}
+
 //Pruning date inferance from bud_break_date =  1 month earlier for a 2 week duration
 export const inferPrune = (timestamp) => {
   let pruneStart = moment(timestamp).year(2022).subtract(1, 'months')._d;
@@ -32,7 +42,7 @@ export const inferPrune = (timestamp) => {
 //Pruning date end inferance from prune_start date = 2 weeks later
 export const inferEnd = (pruneStart) => {
   let pruneEnd = moment(pruneStart).add(2, 'weeks')._d;
-    pruneEnd = moment(pruneEnd).format().year(2022);
+    pruneEnd = moment(pruneEnd).year(2022).format();
   return pruneEnd
 }
 

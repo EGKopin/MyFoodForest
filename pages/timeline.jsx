@@ -26,7 +26,7 @@ export default function TimelinePage() {
       </Head>
 
       <main className={styles.main}>
-        <h1>Timeline</h1>
+        {/* <h1>Timeline</h1> */}
         <TimelineFilters 
           setCategories={setCategories}    
         />

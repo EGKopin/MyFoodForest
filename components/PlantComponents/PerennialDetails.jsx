@@ -35,6 +35,9 @@ export default function PerennialDetails (props) {
         </div>
         <h4>{type}, <span className="italics"> {scientific_name}</span></h4>
         <section className="details">
+          Planted Date: {convertDate(planted_date)}
+        </section>
+        <section className="details">
           <div>Pruning Window: {convertDate(prune_start)} to {convertDate(prune_end)}</div>
         </section>
         <section className="details">

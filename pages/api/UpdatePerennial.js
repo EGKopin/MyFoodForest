@@ -3,29 +3,19 @@ const db = require('./dbModel')
 export default async function handler (req, res) {
   const { id, common_name, type, scientific_name, planted_date, self_pollinating, bud_break_date, first_bloom_date, last_bloom_date, first_day_fruiting, last_day_fruiting, pruning_details, fruiting_wood, notes, isannual, prune_start, prune_end } = req.body; 
 
-   try {
+  if (!id) return res.status(200).json({err: 'No plant ID provided'})
+
+  try {
     const queryString = `
     UPDATE plants
-    SET common_name='${common_name}',
-    type='${type}',
-    scientific_name='${scientific_name}',
-    self_pollinating='${self_pollinating}',
-    pruning_details='${pruning_details}',
-    fruiting_wood='${fruiting_wood}',
-    planted_date=${planted_date},
-    notes='${notes}'
+    SET (common_name, type, scientific_name, planted_date, self_pollinating, bud_break_date, first_bloom_date, last_bloom_date, first_day_fruiting, last_day_fruiting, pruning_details, fruiting_wood, notes, isannual, prune_start, prune_end) = ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16)
     WHERE id=${id}
     RETURNING *
     `
-    // bud_break_date=${bud_break_date},
-    // first_bloom_date=${first_bloom_date},
-    // last_bloom_date=${last_bloom_date},
-    // first_day_fruiting=${first_day_fruiting},
-    // last_day_fruiting=${last_day_fruiting},
-    // prune_start=${prune_start},
-    // prune_end=${prune_end}
+    const params = [common_name, type, scientific_name, planted_date, self_pollinating, bud_break_date, first_bloom_date, last_bloom_date, first_day_fruiting, last_day_fruiting, pruning_details, fruiting_wood, notes, isannual, prune_start, prune_end];
 
-    const result = await db.query(queryString);
+
+    const result = await db.query(queryString, params);
     return res.status(200).json(result.rows)
   }
   catch (err) {
