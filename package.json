@@ -19,6 +19,7 @@
     "date-fns": "^2.29.3",
     "eslint": "8.31.0",
     "eslint-config-next": "13.1.1",
+    "fabric": "^5.3.0",
     "moment": "^2.29.4",
     "next": "13.1.1",
     "pg": "^8.10.0",
