@@ -2,7 +2,6 @@ import { useContext, useEffect } from 'react';
 import { server } from '../config';
 import styles from '../styles/Layout.module.css';
 import { Context } from '../components/Context';
-
  
 export default function Home () {
   const { allPlants, setAllPlants, setAllObs } = useContext(Context)

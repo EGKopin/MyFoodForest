@@ -1,3 +1,6 @@
+What about auto-constructing a list of events as they come up, and they can be crossed off when finished
+Adding Fertilize/Amendments  as a timeline category
+
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   first_name VARCHAR(50),

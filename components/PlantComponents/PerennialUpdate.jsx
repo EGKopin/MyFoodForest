@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../Context";
-import { server } from '../../config'
+import { server } from '../../config';
+import { formatForForm } from '../service/dateConversions'
 
 export default function PerennialUpdate ({id, details, setUpdateModal}) {
   const { setAllPlants } = useContext(Context);
@@ -25,36 +26,22 @@ export default function PerennialUpdate ({id, details, setUpdateModal}) {
     }
   }
 
-  function scrubDates (plant) {
-    for (let [key, value] of Object.entries(plant)){
-      if (key === 'planted_date'|| key === 'bud_break_date'  ||key ==='first_bloom_date'|| key ==='last_bloom_date'|| key ==='first_day_fruiting' ||key ==='last_day_fruiting'|| key ==='prune_start'||key === 'prune_end') {
-      if (value !== null) plant[key] = `${value}`;
-      }
-    }
-    return plant;
-  }
-
-  
   const updatePerennial = () => {
-    const plant = scrubDates(plantDetails)
-    console.log(plant)
-    // fetch(`${server}/api/UpdatePerennial`, {
-    //   method:'PUT',
-    //   mode: 'cors',
-    //   body: JSON.stringify(plant),
-    //   headers: {
-    //     'Content-type': 'application/json; charset=UTF-8',
-    //   },
-    // })
-    // .then(res => res.json())
-    // .then(updatedPlant => {
-    //   // setPlantDetails(defaultPerennial);
-    //   console.log('Perennial Updated', updatedPlant);
-    //   // setUpdateModal(false)
-    //   // setAllPlants(state=>state.concat(addedplant));
+    fetch(`${server}/api/UpdatePerennial`, {
+      method:'PATCH',
+      mode: 'cors',
+      body: JSON.stringify(plantDetails),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    })
+    .then(res => res.json())
+    .then(updatedPlant => {
+      console.log('Perennial Updated', updatedPlant);
+      setUpdateModal(false)
 
-    //   })
-    // .catch ((err) => console.log('error in PerennialUpdate', err))
+      })
+    .catch ((err) => console.log('error in PerennialUpdate', err))
   }
 
   return (
@@ -75,7 +62,7 @@ export default function PerennialUpdate ({id, details, setUpdateModal}) {
         <div className="form-row">
           <div className="form-pair">
             <label for='planted_date'>Planted Date: </label>
-            <input type="date" id='planted_date' name='planted_date'  onChange={updateForm} />
+            <input type="date" id='planted_date' name='planted_date' value={formatForForm(planted_date)} onChange={updateForm} />
           </div>
 
           <div className="form-pair">
@@ -91,16 +78,16 @@ export default function PerennialUpdate ({id, details, setUpdateModal}) {
         <div className="form-row">
           <div className="form-pair">
             <label for="prune_start"> Start:</label>
-            <input type="date" name="prune_start" id="prune_start" onChange={updateForm} />
+            <input type="date" name="prune_start" id="prune_start" value={formatForForm(prune_start)} onChange={updateForm} />
           </div>
           <div className="form-pair">
             <label for="prune_end">End:</label>
-            <input type="date" name="prune_end" id="prune_end" onChange={updateForm} />
+            <input type="date" name="prune_end" id="prune_end" value={formatForForm(prune_end)} onChange={updateForm} />
           </div>
         </div>
         {/* <div className="form-row"> */}
         <label for="bud_break_date">Bud Break:</label>
-        <input type="date" id="bud_break_date" name="bud_break_date"  onChange={updateForm} />
+        <input type="date" id="bud_break_date" name="bud_break_date" value={formatForForm(bud_break_date)}  onChange={updateForm} />
         {/* </div> */}
           <br />
 
@@ -108,12 +95,11 @@ export default function PerennialUpdate ({id, details, setUpdateModal}) {
           <div className="form-row">
             <div className="form-pair">
             <label for="first_bloom_date">Start:</label>
-            <input type="date" id="first_bloom_date" name="first_bloom_date" onChange={updateForm} />
-          
+            <input type="date" id="first_bloom_date" name="first_bloom_date" value={formatForForm(first_bloom_date)} onChange={updateForm} />
           </div>
           <div className="form-pair">
             <label for='last_bloom_date'>End:</label>
-            <input type="date" id='last_bloom_date'  name='last_bloom_date'  onChange={updateForm} />
+            <input type="date" id='last_bloom_date'  name='last_bloom_date' value={formatForForm(last_bloom_date)} onChange={updateForm} />
           </div>
         </div>
         
@@ -121,11 +107,11 @@ export default function PerennialUpdate ({id, details, setUpdateModal}) {
         <div className="form-row">
           <div className="form-pair">
             <label for='first_day_fruiting'>Start:</label>
-            <input type="date" name='first_day_fruiting' id='first_day_fruiting' onChange={updateForm} />
+            <input type="date" name='first_day_fruiting' id='first_day_fruiting' value={formatForForm(first_day_fruiting)} onChange={updateForm} />
           </div>
           <div className="form-pair">
             <label for='last_day_fruiting'>End:</label>
-            <input type="date" id='last_day_fruiting' name='last_day_fruiting' onChange={updateForm} />
+            <input type="date" id='last_day_fruiting' name='last_day_fruiting' value={formatForForm(last_day_fruiting)} onChange={updateForm} />
           </div>
         </div>
 
@@ -137,7 +123,8 @@ export default function PerennialUpdate ({id, details, setUpdateModal}) {
           <label for='notes' >Other Notes:</label>
           <textarea name='notes' id='notes' value={notes} onChange={updateForm} />      
         </div>
-        <button className='addButton' onClick={updatePerennial} >Submit</button>
+        <button className='addButton' onClick={updatePerennial} >Update</button>
+        <button className='addButton' onClick={() => setUpdateModal(false)} >Cancel</button>
       </div>
     </div>
   )

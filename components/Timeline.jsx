@@ -11,14 +11,13 @@ export function Timeline({categories}) {
 
   const options = {
     // barPercentage: 0.3,
-    barThickness: 25,
+    barThickness: 15,
     indexAxis: 'y',
     elements: {
       bar: {
-        borderWidth: 2,
+        borderWidth: 1,
         borderSkipped: false,
         borderRadius: 14,
-        barPercentage: 0.3
       },
     },
     plugins: {
@@ -46,7 +45,7 @@ export function Timeline({categories}) {
         }
       },
       y: {
-        stacked: true,
+        stacked: true
       },
     },
     layout: {
