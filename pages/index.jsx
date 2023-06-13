@@ -2,7 +2,7 @@ import { useContext, useEffect } from 'react';
 import { server } from '../config';
 import styles from '../styles/Layout.module.css';
 import { Context } from '../components/Context';
-import Canvas from '../components/Canvas/Canvas'
+// import Canvas from '../components/Canvas/Canvas'
  
 export default function Home () {
   const { allPlants, setAllPlants, setAllObs } = useContext(Context)
@@ -34,7 +34,7 @@ export default function Home () {
     <>
       <main className={styles.main}>    
 ???
-<Canvas />
+{/* <Canvas /> */}
       </main>
     </>
   )
