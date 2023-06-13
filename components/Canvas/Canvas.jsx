@@ -1,6 +1,8 @@
 // import {fabric} from "fabric";
 // import { useRef, useEffect, useState } from "react";
 
+//THERE IS AN ERROR TO DO WITH THIS FEATURE - it looks like a Canvas issue
+
 // const Canvas = () => {
 //   const canvasRef = useRef(null); //this creates the relationship between the canvas and the ref
 
