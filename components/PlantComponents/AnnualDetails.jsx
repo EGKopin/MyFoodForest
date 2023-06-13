@@ -1,14 +1,15 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../Context";
 import moment from "moment";
 import AddObservation from './ObservationForm';
 import PlantObservations from './PlantObservations';
+import AnnualUpdate from './AnnualUpdate';
 
 export default function AnnualDetails (props) {
-  const { currentID } = props
+  const { currentID, updateModal, setUpdateModal } = props
   const { allPlants } = useContext(Context);
 
-  let currentDetails = {};
+  const [ currentDetails, setCurrentDetails ] = useState({})
 
   const convertDate = (timestamp) => {
     if (timestamp !== null) {
@@ -20,25 +21,39 @@ export default function AnnualDetails (props) {
   }
 
   const UpdatedDetails = () => {
+
     if (currentID){
-    currentDetails = allPlants.filter(plant => plant.id === currentID)[0]
+    setCurrentDetails(allPlants.filter(plant => plant.id === currentID)[0])
+
     const { id, common_name, type, scientific_name, days_to_germ, seed_depth, seed_start_date, soil_block, weeks_to_transplant, seed_start_date_outside, favorite, notes } = currentDetails
+
     return (
-      <>
-      <h3>{common_name}</h3>
-      <h4>{type}, <span className="italics"> {scientific_name}</span></h4>
-      <section className="details">
-        <div>Days to Germination: {days_to_germ}</div>
-        <div>Seed Depth: {seed_depth}</div>
+      <section className="plantDetails">
+        <div className="detailHeader">
+          <h1>{common_name} id {id}</h1> 
+        <button className="updateBtn" onClick={() => setUpdateModal(true)}>Update</button>
+        </div>
+        <h4>{type}, <span className="italics"> {scientific_name}</span></h4>
+
+        <section className="details">
+          <div>Days to Germination: {days_to_germ}</div>
+          <div>Seed Depth: {seed_depth}</div>
+        </section>
+
+        <section className="details">
+          <div>Inside Seed Start: {convertDate(seed_start_date)}</div>    
+          <div>Outside Seed Start: {convertDate(seed_start_date_outside)}</div>
+        </section>
+
+        <section className="details">
+            <div>Soil Block:</div>
+            <div>Favorite </div>
+        </section>
+
+        <div>Weeks To Transplant: <br></br>{weeks_to_transplant}</div>
+        <div>Notes:<br></br>{notes}</div>
+
       </section>
-      <section className="details">
-        <div>Inside Seed Start: {convertDate(seed_start_date)}</div>    
-        <div>Outside Seed Start: {convertDate(seed_start_date_outside)}</div>
-      </section>
-      <div>Soil Block: Favorite </div>
-      <div>Weeks To Transplant: <br></br>{weeks_to_transplant}</div>
-      <div>Notes:<br></br>{notes}</div>
-      </>
     )
     }
   }
@@ -50,13 +65,15 @@ export default function AnnualDetails (props) {
 
   return (
     <>
-    <section className="plantContainer">
+      <section>
+      {currentID && !updateModal ? <UpdatedDetails /> : null }
+      {currentID && !updateModal ? <AddObservation currentID={currentID}/> : null }
+
+      {updateModal ? <AnnualUpdate id={currentID} details={currentDetails} setUpdateModal={setUpdateModal}/> : null}
+
       <div className="plantDetails">
-        {currentID ? <UpdatedDetails /> : null }
-        <br></br>
-        {currentID ? <AddObservation currentID={currentID}/> : null }
+        {currentID ? <PlantObservations currentID={currentID}/> : null }
       </div>
-      {currentID ? <PlantObservations currentID={currentID}/> : null }
     </section>
     </>
   )
