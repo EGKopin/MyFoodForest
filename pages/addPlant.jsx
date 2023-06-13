@@ -6,7 +6,7 @@ import { server } from '../config'
 import AddPerennial from '../components/AddPlant/AddPerennial'
 import AddAnnual from '../components/AddPlant/AddAnnual'
 
-//Main page for adding all plants
+//Main page for adding a plant
 
 export default function AddPlant() {
   const [display, setDisplay] = useState([]);

@@ -54,7 +54,6 @@ export default function AnnualUpdate ({id, details, setUpdateModal}) {
         <label for="type">Type:</label>
         <input type="text" id="type" name='type' value={type} onChange={updateForm} />
         <br />
-
         <label for='scientific_name'>Scientific name:</label>
         <input type="text" id='scientific_name' name='scientific_name' value={scientific_name} onChange={updateForm} />
         <br />
