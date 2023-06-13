@@ -1,7 +1,7 @@
 const Header = () => {
   return (
     <>
-    header
+    What would I like in the header?
     </>
   )
 }
